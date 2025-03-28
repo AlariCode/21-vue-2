@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ProfileAvatar from './components/ProfileAvatar.vue'
+</script>
 
 <template>
   <div class="app">
-    <nav class="nav">Меню</nav>
+    <nav class="nav">
+      <ProfileAvatar name="Антон" />
+    </nav>
     <main>Контент</main>
   </div>
 </template>
