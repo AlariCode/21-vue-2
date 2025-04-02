@@ -1,12 +1,16 @@
+import { API_ROUTES } from '@/api';
 import type { Profile } from '@/interfaces/profile.interface';
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 export const useProfileStore = defineStore('profile', () => {
 	const profile = ref<Profile>();
 
-	watch(profile, () => {
-		console.log(profile)
-	})
-	return { profile };
+	async function fetchProfile() {
+		const data = await fetch(API_ROUTES.profile);
+		const res = (await data.json()) as Profile;
+		profile.value = res;
+	}
+
+	return { profile, fetchProfile };
 });
