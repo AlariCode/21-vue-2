@@ -9,7 +9,9 @@ import ProfileAvatar from './components/ProfileAvatar.vue';
       <ProfileAvatar />
       <CategoryList />
     </nav>
-    <main>Контент</main>
+    <main>
+      <RouterView />
+    </main>
   </div>
 </template>
 
