@@ -11,7 +11,7 @@ export const router = createRouter({
 		}, {
 			path: '/main', component: MainView,
 			children: [
-				{ path: '', component: TestComp },
+				{ path: '', component: TestComp, name: 'main' },
 				{ path: 'new', component: TestComp2 },
 			]
 		}

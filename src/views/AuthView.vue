@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import ButtonText from '@/components/ButtonText.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function redirectToMain() {
+  router.push({
+    name: 'main',
+  });
+}
 </script>
 
 <template>
   <div class="auth">
     <div class="auth__form">
       <h1 class="auth__header">Bookmarkly</h1>
-      <ButtonText>Вход</ButtonText>
+      <ButtonText @click="redirectToMain">Вход</ButtonText>
     </div>
   </div>
 </template>
