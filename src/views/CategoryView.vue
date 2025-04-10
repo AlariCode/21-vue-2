@@ -2,21 +2,22 @@
 import type { Category } from '@/interfaces/category.inteface';
 import { useCategoryStore } from '@/stores/categories.store';
 import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, onBeforeRouteUpdate } from 'vue-router';
 
 const route = useRoute();
 const state = useCategoryStore();
 const category = ref<Category>();
 
 watch(
-  () => ({
-    alias: route.params.alias,
-    categories: state.categories,
-  }),
-  (data) => {
-    category.value = state.getCategoryByAlias(data.alias);
+  () => state.categories,
+  () => {
+    category.value = state.getCategoryByAlias(route.params.alias);
   },
 );
+
+onBeforeRouteUpdate((to) => {
+  category.value = state.getCategoryByAlias(to.params.alias);
+});
 </script>
 
 <template>
