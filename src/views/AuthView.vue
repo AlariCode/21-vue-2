@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import ButtonText from '@/components/ButtonText.vue';
 import InputString from '@/components/InputString.vue';
+import { useAuthStore } from '@/stores/auth.store';
 import { ref } from 'vue';
 
 const form = ref<{ email?: string; password?: string }>({});
+const authStore = useAuthStore();
 
 function onSubmit(event: Event) {
   event.preventDefault();
-  console.log(event);
+  if (!form.value.email || !form.value.password) {
+    return;
+  }
+  authStore.login(form.value.email, form.value.password);
+  form.value = {};
 }
 </script>
 
@@ -19,6 +25,7 @@ function onSubmit(event: Event) {
         <InputString v-model="form.email" placeholder="Email" />
         <InputString v-model="form.password" placeholder="Пароль" type="password" />
         <ButtonText type="submit">Вход</ButtonText>
+        {{ authStore.token }}
       </form>
     </div>
   </div>
