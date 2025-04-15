@@ -25,7 +25,7 @@ function onSubmit(event: Event) {
         <InputString v-model="form.email" placeholder="Email" />
         <InputString v-model="form.password" placeholder="Пароль" type="password" />
         <ButtonText type="submit">Вход</ButtonText>
-        {{ authStore.token }}
+        {{ authStore.getToken }}
       </form>
     </div>
   </div>
