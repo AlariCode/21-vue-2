@@ -3,13 +3,21 @@ import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted } from 'vue';
 import ButtonIcon from './ButtonIcon.vue';
 import IconPlus from '@/icons/IconPlus.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth.store';
 
 const store = useCategoryStore();
+const authStore = useAuthStore();
+const router = useRouter();
 
 onMounted(() => {
   store.fetchCategories();
 });
+
+function logout() {
+  authStore.clearToken();
+  router.push({ name: 'auth' });
+}
 </script>
 
 <template>
@@ -23,6 +31,9 @@ onMounted(() => {
       <ButtonIcon @click="store.createCategory">
         <IconPlus />
       </ButtonIcon>
+    </li>
+    <li class="list-item">
+      <a href="#" @click="logout">Выход</a>
     </li>
   </ul>
 </template>
