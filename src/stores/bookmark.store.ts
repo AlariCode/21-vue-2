@@ -7,9 +7,14 @@ export const useBookmarkStore = defineStore('bookmarks', () => {
 	const bookmarks = ref<Bookmark[]>([]);
 
 	async function fetchBookmarks(categoryId: number) {
-		const { data } = await client().get<Bookmark[]>(API_ROUTES.bookmarks(categoryId));
+		const { data } = await client().get<Bookmark[]>(API_ROUTES.bookmarks.get(categoryId));
 		bookmarks.value = data
 	}
 
-	return { bookmarks, fetchBookmarks }
+	async function deleteBookmark(id: number, categoryId: number) {
+		await client().delete<Bookmark[]>(API_ROUTES.bookmarks.delete(id));
+		fetchBookmarks(categoryId)
+	}
+
+	return { bookmarks, fetchBookmarks, deleteBookmark }
 });

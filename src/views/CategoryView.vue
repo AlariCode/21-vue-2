@@ -35,12 +35,16 @@ watch(
 
 <template>
   <CategoryHeader v-if="category" :category="category" />
-  <BookmarkCard
-    :id="1"
-    image="/public/avatar.png"
-    title="GitHub - gofiber/fiber: ⚡️ Express inspired web framework written in Go"
-    url="https://purpleschool.ru"
-    :category_id="1"
-    :created_at="new Date()"
-  />
+  <div class="category-list">
+    <BookmarkCard v-for="item in bookmarkStore.bookmarks" :key="item.id" v-bind="item" />
+  </div>
 </template>
+
+<style scoped>
+.category-list {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+</style>
