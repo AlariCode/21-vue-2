@@ -26,4 +26,7 @@ import ProfileAvatar from '../components/ProfileAvatar.vue';
 .nav {
   min-width: 320px;
 }
+main {
+  width: 100%;
+}
 </style>
