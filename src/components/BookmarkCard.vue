@@ -5,7 +5,7 @@ import ButtonIconBig from './ButtonIconBig.vue';
 import IconLinkWhite from '@/icons/IconLinkWhite.vue';
 import { useBookmarkStore } from '@/stores/bookmark.store';
 
-const { title, image, url, id, category_id } = defineProps<Bookmark>();
+const { title, image, url, id } = defineProps<Bookmark>();
 const bookmarkStore = useBookmarkStore();
 
 function openLink() {
