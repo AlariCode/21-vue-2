@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BookmarkAdd from '@/components/BookmarkAdd.vue';
 import BookmarkCard from '@/components/BookmarkCard.vue';
 import BookmarkSort from '@/components/BookmarkSort.vue';
 import CategoryHeader from '@/components/CategoryHeader.vue';
@@ -46,6 +47,7 @@ watch(
   <BookmarkSort :option="bookmarkStore.activeSort" @sort="sortBookmarks" />
   <div class="category-list">
     <BookmarkCard v-for="item in bookmarkStore.bookmarks" :key="item.id" v-bind="item" />
+    <BookmarkAdd v-if="category" :category_id="category.id" />
   </div>
 </template>
 
@@ -54,6 +56,7 @@ watch(
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 350px);
   gap: 24px;
 }
 </style>
